@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Kelompok</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1c1c1c;
+      color: #ddd;
+    }
+
+    nav {
+      background-color: rgba(15,15,15,0.92);
+      backdrop-filter: blur(8px);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      border-bottom: 1px solid #2e2e2e;
+    }
+    nav .logo { color: #fff; font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a { color: #aaa; text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    nav ul li a:hover { color: #fff; }
+    nav ul li a.active { color: #fff; border-bottom: 2px solid #5D8AA8; padding-bottom: 2px; }
+
+    /* HERO MINI */
+    .page-hero {
+      margin-top: 60px;
+      height: 220px;
+      background: linear-gradient(135deg, #0e1e2a, #1a3344);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid #2e2e2e;
+    }
+    .page-hero h1 { font-size: 32px; color: #fff; letter-spacing: 1px; }
+    .page-hero p { color: #7a9eb0; font-size: 14px; margin-top: 8px; }
+    .divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(to right, #5D8AA8, #a0c4d8);
+      margin: 12px auto 0; border-radius: 2px;
+    }
+
+    /* CONTAINER */
+    .about-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 30px 80px;
+    }
+
+    .vm-card {
+      background: linear-gradient(160deg, #272727, #1e1e1e);
+      border: 1px solid #333;
+      border-radius: 14px;
+      padding: 28px 24px;
+    }
+    .vm-card .vm-icon { font-size: 30px; margin-bottom: 12px; }
+    .vm-card h3 {
+      font-size: 14px; color: #a0c4d8;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .vm-card p { font-size: 13px; color: #999; line-height: 1.8; }
+
+    /* TENTANG KAMI */
+    .about-desc {
+      background: linear-gradient(160deg, #272727, #1e1e1e);
+      border: 1px solid #333;
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 30px;
+    }
+    .about-desc h3 {
+      font-size: 14px; color: #a0c4d8;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 14px; padding-bottom: 10px;
+      border-bottom: 1px solid #333;
+    }
+    .about-desc p { font-size: 13px; color: #999; line-height: 1.9; }
+
+    /* INFO KARTU */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .info-card {
+      background: linear-gradient(160deg, #272727, #1e1e1e);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .info-card .info-icon { font-size: 28px; margin-bottom: 10px; }
+    .info-card .info-label {
+      font-size: 11px; color: #777;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .info-card .info-value { font-size: 13px; color: #ddd; font-weight: 600; }
+
+    footer {
+      background-color: #111;
+      color: #555;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      border-top: 1px solid #222;
+    }
+    footer span { color: #777; }
+
+    @media (max-width: 600px) {
+      .vm-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .page-hero h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">&#128187; Portofolio Kelompok 5</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="anggota.html">Team</a></li>
+      <li><a href="About.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO MINI -->
+  <div class="page-hero">
+    <div>
+      <h1>&#128101; Tentang Kelompok Kami</h1>
+      <p>Pemograman Berbasis Web &mdash; Sistem Informasi</p>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <div class="about-container">
+
+    <!-- TENTANG KAMI -->
+    <div class="about-desc">
+      <h3>&#128196; Tentang Kami</h3>
+      <p>
+        Kami adalah tim mahasiswa Sistem Informasi yang berkomitmen untuk terus belajar 
+        dan berkembang di bidang teknologi digital. Website ini merupakan representasi 
+        dari perjalanan kami dalam memahami dan mengimplementasikan konsep pemrograman web. 
+        Dengan semangat kolaborasi, kami berusaha menciptakan solusi sederhana yang 
+        bermanfaat dan inovatif.
+      </p>
+    </div>
+
+    <!-- INFO KAMPUS, MATKUL, TAHUN -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">&#127979;</div>
+        <div class="info-label">Kampus</div>
+        <div class="info-value">IAKN Ambon</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">&#128187;</div>
+        <div class="info-label">Mata Kuliah</div>
+        <div class="info-value">Pemrograman Berbasis Web</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">&#128197;</div>
+        <div class="info-label">Tahun</div>
+        <div class="info-value">2026</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&#169; 2026 Kelompok 5  &mdash; Institut Agama Kristen Negeri Ambon
+  </footer>
+
+</body>
+</html>

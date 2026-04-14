@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anggota Kelompok</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1c1c1c; color: #aaa; }
+
+    nav {
+      background-color: rgba(15,15,15,0.92);
+      backdrop-filter: blur(8px);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #2e2e2e;
+    }
+    nav .logo { color: #ffffff; font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a { color: #aaa; text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    nav ul li a:hover { color: #fff; }
+
+    .section-title { text-align: center; padding: 55px 20px 10px; }
+    .section-title h2 { font-size: 28px; color: #eee; margin-bottom: 8px; }
+    .section-title p { font-size: 14px; color: #777; }
+    .divider { width: 60px; height: 4px; background: linear-gradient(to right, #555, #999); margin: 10px auto 0; border-radius: 2px; }
+
+    .members-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 55px;
+      padding: 45px 20px 80px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(160deg, #272727, #1e1e1e);
+      border: 1px solid #333;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(201, 193, 193, 0.5);
+      width: 100%;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.65); }
+
+    .card-top {
+      background-color: #1d4763;
+      padding: 30px 30px 20px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      border-bottom: 1px solid #101111;
+    }
+    .avatar-wrap {
+      width: 110px; height: 110px; min-width: 110px;
+      border-radius: 50%; overflow: hidden;
+      border: 3px solid #011722;
+      background-color: #020e14;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 42px; font-weight: bold; color: #fff;
+    }
+    .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .card-top-info { flex: 1; }
+    .card-top-info h3 { font-size: 22px; color: #ffffff; margin-bottom: 12px; text-shadow: 0 1px 4px rgba(214, 19, 19, 0.3); }
+
+    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; padding: 6px 14px; border-radius: 20px;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.4);
+      color: #fff; background: rgba(255,255,255,0.15);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .social-btn:hover { background: rgba(255,255,255,0.28); }
+    .social-btn.ig:hover { border-color: #e1306c; color: #ffd6e7; }
+    .social-btn.wa:hover { border-color: #25d366; color: #d0ffe8; }
+
+    .card-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+    .card-section { padding: 22px 24px; border-right: 1px solid #2e2e2e; }
+    .card-section:last-child { border-right: none; }
+    .card-section h4 {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px;
+      color: #888; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #333;
+    }
+    .card-section table { width: 100%; font-size: 13px; border-collapse: collapse; }
+    .card-section table tr td { padding: 5px 2px; vertical-align: top; }
+    .card-section table tr td:first-child { color: #777; width: auto; white-space: nowrap; padding-right: 8px; }
+    .card-section table tr td:last-child { color: #ddd; font-weight: 500; word-break: break-all; }
+
+
+    .edu-item { margin-bottom: 12px; }
+    .edu-item .edu-level { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.8px; }
+    .edu-item .edu-name { font-size: 13px; color: #ddd; font-weight: 600; margin: 2px 0; }
+    .edu-item .edu-year { font-size: 12px; color: #777; }
+
+    .skills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .badge { background-color: rgba(255,255,255,0.06); color: #bbb; font-size: 11px; padding: 5px 11px; border-radius: 20px; border: 1px solid #3e3e3e; }
+
+    footer { background-color: #111; color: #555; text-align: center; padding: 20px; font-size: 13px; border-top: 1px solid #222; }
+    footer span { color: #777; }
+
+    @media (max-width: 700px) {
+      .card-bottom { grid-template-columns: 1fr; }
+      .card-section { border-right: none; border-bottom: 1px solid #2e2e2e; }
+      .card-top { flex-direction: column; text-align: center; }
+      .social-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">&#128187; Portfolio Kelompok 5</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="anggota.html">Team</a></li>
+      <li><a href="index.html#">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="section-title">
+    <h2>Meet Our Team</h2>
+    <p>The people who build this project</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="members-container">
+
+    <!-- ===== ROSITHA SALAMONY ===== -->
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar-wrap">
+          <img src="assets/foto1.jpeg" alt="Foto Anggota 1">
+        </div>
+        <div class="card-top-info">
+          <h3>ROSITHA SALAMONY </h3>
+          <div class="social-links">
+            <a href="https://instagram.com/tiasalamonyyy_" class="social-btn ig" target="_blank">&#128247; Instagram</a>
+            <a href="https://wa.me/6285333109344" class="social-btn wa" target="_blank">&#128222; WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-section">
+          <h4>&#128196; Biodata</h4>
+          <table>
+            <tr><td>NIM</td><td>: 1520240401069</td></tr>
+            <tr><td>Prodi</td><td>: Sistem Informasi</td></tr>
+            <tr><td>Asal</td><td>: Ambon, Maluku</td></tr>
+            <tr><td>Email</td><td>: salamonyrositha26@gmail.com</td></tr>
+            <tr><td>Hobi</td><td>: Badminton & Desain</td></tr>
+          </table>
+        </div>
+        <div class="card-section">
+          <h4>&#127979; Pendidikan</h4>
+          <div class="edu-item">
+            <div class="edu-level">Perguruan Tinggi </div>
+            <div class="edu-name">INSTITUT AGAMA KRISTEN NEGERI AMBON</div>
+            <div class="edu-year">2024 — Sekarang</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-level">SMK</div>
+            <div class="edu-name">SMK N 1 AMBON </div>
+            <div class="edu-year">2020 — 2023</div>
+          </div>
+        </div>
+        <div class="card-section">
+          <h4>&#9881; Keahlian</h4>
+          <div class="skills">
+            <span class="badge">Editor Video</span>
+            <span class="badge">Canva</span>
+            <span class="badge">MS Office</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== VENESYA LOPULALAN ===== -->
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar-wrap">
+          <img src="assets/foto2.jpeg" alt="Foto Anggota 2">
+        </div>
+        <div class="card-top-info">
+          <h3>VENESYA LOPULALAN</h3>
+          <div class="social-links">
+            <a href="https://instagram.com/enesyalplln" class="social-btn ig" target="_blank">&#128247; Instagram</a>
+            <a href="https://wa.me/6285244229130" class="social-btn wa" target="_blank">&#128222; WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-section">
+          <h4>&#128196; Biodata</h4>
+          <table>
+            <tr><td>NIM</td><td>: 1520240401076</td></tr>
+            <tr><td>Prodi</td><td>: Sistem Informasi</td></tr>
+            <tr><td>Asal</td><td>: Ambon, Maluku</td></tr>
+            <tr><td>Email</td><td>: venesyalopulalan7@gmail.com</td></tr>
+            <tr><td>Hobi</td><td>: Menari & Menyanyi </td></tr>
+          </table>
+        </div>
+        <div class="card-section">
+          <h4>&#127979; Pendidikan</h4>
+          <div class="edu-item">
+            <div class="edu-level">Perguruan Tinggi</div>
+            <div class="edu-name">INSTITUT AGAMA KRISTEN NEGERI AMBON</div>
+            <div class="edu-year">2024 — Sekarang</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-level">SMA </div>
+            <div class="edu-name">SMA N 2 SERAM BAGIAN BARAT</div>
+            <div class="edu-year">2020 — 2023</div>
+          </div>
+        </div>
+        <div class="card-section">
+          <h4>&#9881; Keahlian</h4>
+          <div class="skills">
+            <span class="badge">Canva</span>
+            <span class="badge">MY SQL</span>
+            <span class="badge">MS Word</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MARIANO VICTOR RAFAEL SALEKY ===== -->
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar-wrap">
+          <img src="assets/foto3.jpeg" alt="Foto Anggota 3">
+        </div>
+        <div class="card-top-info">
+          <h3>MARIANO VICTOR RAFAEL SALEKY</h3>
+          <div class="social-links">
+            <a href="https://instagram.com/ano_saleky" class="social-btn ig" target="_blank">&#128247; Instagram</a>
+            <a href="https://wa.me/6281248750019" class="social-btn wa" target="_blank">&#128222; WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-section">
+          <h4>&#128196; Biodata</h4>
+          <table>
+            <tr><td>NIM</td><td>: 1520240401074</td></tr>
+            <tr><td>Prodi</td><td>: Sistem Informasi</td></tr>
+            <tr><td>Asal</td><td>: Ambon, Maluku</td></tr>
+            <tr><td>Email</td><td>: marianovrs05@gmail.com</td></tr>
+            <tr><td>Hobi</td><td>: Musik, Gaming & Memasak</td></tr>
+          </table>
+        </div>
+        <div class="card-section">
+          <h4>&#127979; Pendidikan</h4>
+          <div class="edu-item">
+            <div class="edu-level">Perguruan Tinggi</div>
+            <div class="edu-name">Institut Agama Kristen Negeri Ambon</div>
+            <div class="edu-year">2024 — Sekarang</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-level">SMA / SMK</div>
+            <div class="edu-name">SMA NEGERI 5 AMBON</div>
+            <div class="edu-year">2020 — 2023</div>
+          </div>
+        </div>
+        <div class="card-section">
+          <h4>&#9881; Keahlian</h4>
+          <div class="skills">
+            <span class="badge">Design</span>
+            <span class="badge">HTML/CSS</span>
+            <span class="badge">Analysis</span>
+            <span class="badge">Canva</span>
+            <span class="badge">Programming</span>
+            <span class="badge">Canva</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&#169; 2026 Portfolio Kelompok 5 &mdash; Institut Agama Kristen Negeri Ambon
+
+</body>
+</html>
